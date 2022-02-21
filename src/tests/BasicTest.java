@@ -13,6 +13,7 @@ import pages.LocationPopupPage;
 import pages.LoginPage;
 import pages.MealPage;
 import pages.NotificationSystemPage;
+import pages.ProfilePage;
 import pages.SearchResultPage;
 
 public abstract class BasicTest {
@@ -29,6 +30,7 @@ public abstract class BasicTest {
 	protected MealPage mp;
 	protected CartSummaryPage csp;
 	protected SearchResultPage srp;
+	protected ProfilePage pp;
 	
 
 	public BasicTest() {
@@ -46,6 +48,7 @@ public abstract class BasicTest {
 		lPP = new LocationPopupPage(driver, wait, js);
 		lp = new LoginPage(driver, wait);
 		nsp = new NotificationSystemPage(driver, wait);
+		pp = new ProfilePage(driver, wait, js);
 		ap = new AuthPage(driver,wait, js);
 		mp = new MealPage(driver, wait, js);
 		csp = new CartSummaryPage(driver, wait, js);
