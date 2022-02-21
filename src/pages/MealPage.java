@@ -19,8 +19,8 @@ public class MealPage extends BasicPage {
 		return driver.findElement(By.xpath("//*[contains(@class, 'navs--main')]//li[1]/a"));
 	}
 
-	public WebElement getProduct() {
-		return driver.findElement(By.xpath("//*[@id='listing']/div[1]/div/div[2]/div[2]/a"));
+	public WebElement getProduct(int index) {
+		return driver.findElement(By.xpath("//*[@id='listing']/div[" + index +"]/div/div[2]/div[2]/a"));
 	}
 
 	public WebElement getQuantityInput() {
@@ -32,22 +32,22 @@ public class MealPage extends BasicPage {
 				.findElement(By.xpath("//*[contains(@class, 'btn btn--primary btn--large js-proceedtoAddInCart ')]"));
 	}
 
-	public WebElement getFavouriteButton() {
-		return driver.findElement(By.className("favourite"));
+	public WebElement getFavouriteButton(int index) {
+		return driver.findElement(By.xpath("//*[@id='listing']/div["+ index +"]//a"));
 	}
 
-	public void addProductToTheCart(String quantity){
+	public void addProductToTheCart(String quantity, int index){
 		getMealsButton().click();
-		js.executeScript("arguments[0].click();", getProduct());
+		js.executeScript("arguments[0].click();", getProduct(index));
 		getQuantityInput().clear();
 		getQuantityInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
 		getQuantityInput().sendKeys(quantity);
 		getAddToCartButton().click();
 	}
 
-	public void addToFavourite() {
+	public void addToFavourite(int index) {
 		getMealsButton().click();
-		js.executeScript("arguments[0].click();", getFavouriteButton());
+		js.executeScript("arguments[0].click();", getFavouriteButton(index));
 	}
 
 }
