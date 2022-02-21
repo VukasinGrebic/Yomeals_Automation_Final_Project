@@ -7,9 +7,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.AuthPage;
+import pages.CartSummaryPage;
 import pages.LocationPopupPage;
 import pages.LoginPage;
+import pages.MealPage;
 import pages.NotificationSystemPage;
+import pages.SearchResultPage;
 
 public abstract class BasicTest {
 	protected WebDriver driver;
@@ -21,6 +25,10 @@ public abstract class BasicTest {
 	protected LocationPopupPage lPP;
 	protected LoginPage lp;
 	protected NotificationSystemPage nsp;
+	protected AuthPage ap;
+	protected MealPage mp;
+	protected CartSummaryPage csp;
+	protected SearchResultPage srp;
 	
 
 	public BasicTest() {
@@ -38,6 +46,10 @@ public abstract class BasicTest {
 		lPP = new LocationPopupPage(driver, wait, js);
 		lp = new LoginPage(driver, wait);
 		nsp = new NotificationSystemPage(driver, wait);
+		ap = new AuthPage(driver,wait, js);
+		mp = new MealPage(driver, wait, js);
+		csp = new CartSummaryPage(driver, wait, js);
+		srp = new SearchResultPage(driver, wait, js);
 		
 		driver.manage().window().maximize();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
