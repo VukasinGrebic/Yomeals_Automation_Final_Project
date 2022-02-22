@@ -25,11 +25,11 @@ public class AuthPage extends BasicPage {
 	public WebElement getLogOutButton() {
 		return driver.findElement(By.xpath("//*[contains(@class, 'my-account-dropdown')]//li[2]/a"));
 	}
-	
+
 	public WebElement getProfileButton() {
 		return driver.findElement(By.xpath("//*[@id = 'fixed__panel']//li[2]/a"));
 	}
-	
+
 	public void goToProfilePage() {
 		js.executeScript("arguments[0].click();", getMyAccountButton());
 		getProfileButton().click();
@@ -38,7 +38,5 @@ public class AuthPage extends BasicPage {
 	public void logOut() {
 		js.executeScript("arguments[0].click();", getLogOutButton());
 	}
-	
-	
 
 }

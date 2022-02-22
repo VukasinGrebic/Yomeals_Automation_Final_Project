@@ -8,13 +8,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasicPage {
-	
+
 	public LoginPage(WebDriver driver, WebDriverWait wait) {
 		super(driver, wait);
 	}
-
-
-	
 
 	public WebElement getUsername() {
 		return driver.findElement(By.name("username"));
@@ -39,6 +36,5 @@ public class LoginPage extends BasicPage {
 		getPassword().sendKeys(password);
 		getLoginButton().click();
 	}
-	
 
 }

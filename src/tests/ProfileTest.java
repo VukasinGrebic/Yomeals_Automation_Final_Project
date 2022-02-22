@@ -17,10 +17,9 @@ public class ProfileTest extends BasicTest {
 				"[ERROR] Login message did not appear.");
 
 		driver.navigate().to(this.baseUrl + "/member/profile");
-		pp.addPersonalInformation("Marcus", "Miois", "2045 W Jackson Blvd", "217-335-2682", "60601", "United States", "California",
-				"Lodi");
-		Assert.assertTrue(nsp.getNotificationMessage().contains("Setup"),
-				"[ERROR] Setup message did not appear.");
+		pp.addPersonalInformation("Marcus", "Miois", "2045 W Jackson Blvd", "217-335-2682", "60601", "United States",
+				"California", "Lodi");
+		Assert.assertTrue(nsp.getNotificationMessage().contains("Setup"), "[ERROR] Setup message did not appear.");
 		nsp.waitForMsgDisappearance();
 		ap.logOut();
 		Assert.assertTrue(nsp.getNotificationMessage().contains("Logout Successfull!"),
@@ -35,7 +34,6 @@ public class ProfileTest extends BasicTest {
 		Assert.assertTrue(nsp.getNotificationMessage().contains("Successfull"),
 				"[ERROR] Login message did not appear.");
 
-		
 		driver.navigate().to(this.baseUrl + "/member/profile");
 		pp.uploadPhoto("img/237-536x354.jpg");
 		Assert.assertTrue(nsp.getNotificationMessage().contains("Profile Image Uploaded Successfully"),

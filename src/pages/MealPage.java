@@ -20,7 +20,7 @@ public class MealPage extends BasicPage {
 	}
 
 	public WebElement getProduct(int index) {
-		return driver.findElement(By.xpath("//*[@id='listing']/div[" + index +"]/div/div[2]/div[2]/a"));
+		return driver.findElement(By.xpath("//*[@id='listing']/div[" + index + "]/div/div[2]/div[2]/a"));
 	}
 
 	public WebElement getQuantityInput() {
@@ -33,10 +33,10 @@ public class MealPage extends BasicPage {
 	}
 
 	public WebElement getFavouriteButton(int index) {
-		return driver.findElement(By.xpath("//*[@id='listing']/div["+ index +"]//a"));
+		return driver.findElement(By.xpath("//*[@id='listing']/div[" + index + "]//a"));
 	}
 
-	public void addProductToTheCart(String quantity, int index){
+	public void addProductToTheCart(String quantity, int index) {
 		getMealsButton().click();
 		js.executeScript("arguments[0].click();", getProduct(index));
 		getQuantityInput().clear();
@@ -44,8 +44,8 @@ public class MealPage extends BasicPage {
 		getQuantityInput().sendKeys(quantity);
 		getAddToCartButton().click();
 	}
-	
-	public void addProductDirectlyToTheCart (String quantity) {
+
+	public void addProductDirectlyToTheCart(String quantity) {
 		getQuantityInput().clear();
 		getQuantityInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
 		getQuantityInput().sendKeys(quantity);

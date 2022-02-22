@@ -12,23 +12,25 @@ public class NotificationSystemPage extends BasicPage {
 	public NotificationSystemPage(WebDriver driver, WebDriverWait wait) {
 		super(driver, wait);
 	}
+
 	public WebElement getMsgShowed() {
-		return driver.findElement(By.xpath("//*[contains(@class, 'alert--success') or contains(@class, 'alert--danger')]"));
+		return driver
+				.findElement(By.xpath("//*[contains(@class, 'alert--success') or contains(@class, 'alert--danger')]"));
 	}
-	
-	
+
 	public String getNotificationMessage() {
-		return driver.findElement(By.xpath("//*[contains(@class, 'alert--success') or contains(@class, 'alert--danger')]")).getText();
+		return driver
+				.findElement(By.xpath("//*[contains(@class, 'alert--success') or contains(@class, 'alert--danger')]"))
+				.getText();
 	}
 
-
-	public void waitForMsgDisappearance () {
+	public void waitForMsgDisappearance() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		wait.until(ExpectedConditions.attributeToBe(By.xpath(" //*[contains(@class, 'system_message')]"), "style",
 				"display: none;"));
 	}
-	
-	public void waitForMsgAppereance () {
+
+	public void waitForMsgAppereance() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		wait.until(ExpectedConditions.attributeToBe(By.xpath(" //*[contains(@class, 'system_message')]"), "style",
 				"display: block;"));

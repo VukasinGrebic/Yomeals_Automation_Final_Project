@@ -3,19 +3,16 @@ package tests;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-
-import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 public class MealItemTest extends BasicTest {
-	
-	@Test (priority=1)
-	public void addMealToCartTest () {
-		driver.navigate().to(baseUrl + "/meal/lobster-shrimp-chicken-quesadilla-combo"); 
+
+	@Test(priority = 1)
+	public void addMealToCartTest() {
+		driver.navigate().to(baseUrl + "/meal/lobster-shrimp-chicken-quesadilla-combo");
 		lpp.closePopup();
 		mp.addProductToTheCart("5", 3);
 		nsp.waitForMsgAppereance();
@@ -24,18 +21,21 @@ public class MealItemTest extends BasicTest {
 		nsp.waitForMsgDisappearance();
 		lpp.openLocationMenu();
 		lpp.setLocation("Arbor Hill - Albany");
-		driver.navigate().to(baseUrl + "/meal/lobster-shrimp-chicken-quesadilla-combo"); 
+		driver.navigate().to(baseUrl + "/meal/lobster-shrimp-chicken-quesadilla-combo");
 		mp.addProductToTheCart("3", 2);
 		nsp.waitForMsgAppereance();
-		Assert.assertTrue(nsp.getNotificationMessage().contains("Meal Added"), "[ERROR] Added to cart message did not appear.");
+		Assert.assertTrue(nsp.getNotificationMessage().contains("Meal Added"),
+				"[ERROR] Added to cart message did not appear.");
 	}
-	@Test (priority=2)
-	public void addMealToFavoriteTest () {
+
+	@Test(priority = 2)
+	public void addMealToFavoriteTest() {
 		driver.navigate().to(baseUrl + "/meal/lobster-shrimp-chicken-quesadilla-combo");
 		lpp.closePopup();
 		mp.addToFavourite(2);
 		nsp.waitForMsgAppereance();
-		Assert.assertTrue(nsp.getNotificationMessage().contains( "Please login"), "[ERROR] Error login message did not appear.");
+		Assert.assertTrue(nsp.getNotificationMessage().contains("Please login"),
+				"[ERROR] Error login message did not appear.");
 		nsp.waitForMsgDisappearance();
 		lp.getLoginButton().click();
 		lp.login(this.emailDemo, super.passwordDemo);
@@ -45,6 +45,7 @@ public class MealItemTest extends BasicTest {
 		Assert.assertTrue(nsp.getNotificationMessage().contains("added"),
 				"[ERROR] Added to favourite message did not appear.");
 	}
+
 	@Test(priority = 3)
 	public void clearCartTest() throws IOException {
 		File file = new File("./data/Data.xlsx");
@@ -62,9 +63,8 @@ public class MealItemTest extends BasicTest {
 			nsp.waitForMsgAppereance();
 			sa.assertTrue(nsp.getNotificationMessage().contains("Meal Added"),
 					"[ERROR] Added to cart message did not appear.");
-			nsp.waitForMsgDisappearance();
 		}
-		
+
 		sa.assertAll();
 
 		csp.clearAll();

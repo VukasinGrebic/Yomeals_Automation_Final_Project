@@ -1,6 +1,5 @@
 package pages;
 
-
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SearchResultPage extends BasicPage {
 
-	public SearchResultPage(WebDriver driver, WebDriverWait wait, JavascriptExecutor js) {
+	public SearchResultPage(WebDriver driver, WebDriverWait wait) {
 		super(driver, wait);
 	}
 
@@ -28,10 +27,10 @@ public class SearchResultPage extends BasicPage {
 	}
 
 	public void searchResultsNames() {
-		getMealsButton().click();
 		for (int i = 0; i < getSearchResults().size(); i++) {
-			System.out.println(getSearchResults().get(i).getText());
+			getSearchResults().get(i).getText();
 		}
+
 	}
 
 }
