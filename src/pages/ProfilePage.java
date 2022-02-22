@@ -62,10 +62,18 @@ public class ProfilePage extends BasicPage {
 		Select dropdownCity = new Select(driver.findElement(By.id("user_city")));
 		dropdownCity.selectByVisibleText(city);
 	}
+	
+	public void scrollIntoViewPersonalInformationSaveButton() {
+		js.executeScript("arguments[0].scrollIntoView;", getPersonalInformationSaveButton());
+	}
 
 	public WebElement getPersonalInformationSaveButton() {
 		return driver.findElement(
 				By.xpath("//*[contains(@class, 'col-lg-12 col-md-12 col-sm-12 col-lg-12 align--right')]//input"));
+	}
+	
+	public WebElement getProfilePhotoUpload () {
+		return driver.findElement(By.name("file"));
 	}
 
 	public void uploadPhoto(String pathToThePicture) {
@@ -73,6 +81,7 @@ public class ProfilePage extends BasicPage {
 		js.executeScript("arguments[0].click();", getUploadPhotoButton());
 		WebElement profilePhotoUpload = driver.findElement(By.name("file"));
 		profilePhotoUpload.sendKeys(profilePhoto.getAbsolutePath());
+		
 
 	}
 
@@ -96,6 +105,7 @@ public class ProfilePage extends BasicPage {
 		selectCountry(country);
 		selectState(state);
 		selectCity(city);
+		scrollIntoViewPersonalInformationSaveButton();
 		js.executeScript("arguments[0].click();", getPersonalInformationSaveButton());
 	}
 

@@ -29,7 +29,7 @@ public class LoginPage extends BasicPage {
 	}
 
 	public WebElement getLoginButton() {
-		return driver.findElement(By.name("btn_submit"));
+		return driver.findElement(By.xpath("//*[contains(@class, 'filled')]/a"));
 	}
 
 	public void login(String email, String password) {

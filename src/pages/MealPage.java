@@ -44,6 +44,13 @@ public class MealPage extends BasicPage {
 		getQuantityInput().sendKeys(quantity);
 		getAddToCartButton().click();
 	}
+	
+	public void addProductDirectlyToTheCart (String quantity) {
+		getQuantityInput().clear();
+		getQuantityInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+		getQuantityInput().sendKeys(quantity);
+		getAddToCartButton().click();
+	}
 
 	public void addToFavourite(int index) {
 		getMealsButton().click();

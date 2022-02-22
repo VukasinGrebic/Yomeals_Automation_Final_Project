@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.asserts.SoftAssert;
+
 import pages.AuthPage;
 import pages.CartSummaryPage;
 import pages.LocationPopupPage;
@@ -23,7 +25,7 @@ public abstract class BasicTest {
 	protected String baseUrl;
 	protected String emailDemo;
 	protected String passwordDemo;
-	protected LocationPopupPage lPP;
+	protected LocationPopupPage lpp;
 	protected LoginPage lp;
 	protected NotificationSystemPage nsp;
 	protected AuthPage ap;
@@ -31,10 +33,11 @@ public abstract class BasicTest {
 	protected CartSummaryPage csp;
 	protected SearchResultPage srp;
 	protected ProfilePage pp;
+	protected SoftAssert sa;
 	
 
 	public BasicTest() {
-		this.baseUrl = "http://demo.yo-meals.com/";
+		this.baseUrl = "http://demo.yo-meals.com";
 		this.emailDemo = "customer@dummyid.com";
 		this.passwordDemo = "12345678a";
 	}
@@ -45,7 +48,7 @@ public abstract class BasicTest {
 		driver = new ChromeDriver();
 		
 		js = (JavascriptExecutor) driver;
-		lPP = new LocationPopupPage(driver, wait, js);
+		lpp = new LocationPopupPage(driver, wait, js);
 		lp = new LoginPage(driver, wait);
 		nsp = new NotificationSystemPage(driver, wait);
 		pp = new ProfilePage(driver, wait, js);
@@ -54,11 +57,14 @@ public abstract class BasicTest {
 		csp = new CartSummaryPage(driver, wait, js);
 		srp = new SearchResultPage(driver, wait, js);
 		
+		sa = new SoftAssert();
+		
 		driver.manage().window().maximize();
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(35));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(35));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(35));
 		driver.navigate().to(baseUrl);
+		
 
 	}
 
