@@ -82,8 +82,8 @@ public abstract class BasicTest {
 
 		if (ITestResult.FAILURE == result.getStatus()) {
 			try {
-				TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
-				File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
+				TakesScreenshot ts = (TakesScreenshot) driver;
+				File sourceFile = ts.getScreenshotAs(OutputType.FILE);
 				FileUtils.copyFile(sourceFile, new File("./screenshots/" + formattedDate + ".png"));
 				System.out.println("Screenshot taken!");
 			} catch (Exception e) {

@@ -23,17 +23,17 @@ public class SearchTest extends BasicTest {
 
 		for (int i = 1; i <= 5; i++) {
 			driver.navigate().to(baseUrl + "/meals");
-			
+
 			String url = sheet.getRow(i).getCell(0).getStringCellValue();
 			driver.navigate().to(url);
 			String location = sheet.getRow(i).getCell(1).getStringCellValue();
 			lpp.setLocation(location);
 			String numberOfSearch = sheet.getRow(i).getCell(2).getStringCellValue();
 			Integer nOfSearch = Integer.valueOf("numberOfSearch");
-			
+
 			sa.assertEquals(srp.searchResultsNumber(), numberOfSearch,
 					"[ERROR] Search result does not match with compared data.");
-			
+
 			for (int j = 3; j < 3 + nOfSearch; j++) {
 				String mealsSearched = sheet.getRow(i).getCell(j).getStringCellValue();
 				sa.assertTrue(srp.searchResultCompare(mealsSearched),
