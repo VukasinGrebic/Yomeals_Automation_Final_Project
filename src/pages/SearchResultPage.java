@@ -1,5 +1,6 @@
 package pages;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,10 +14,6 @@ public class SearchResultPage extends BasicPage {
 		super(driver, wait);
 	}
 
-	public WebElement getMealsButton() {
-		return driver.findElement(By.xpath("//*[contains(@class, 'navs--main')]//li[1]/a"));
-	}
-
 	public List<WebElement> getSearchResults() {
 		List<WebElement> list = driver.findElements(By.xpath("//*[@class='product-name']/a"));
 		return list;
@@ -26,11 +23,27 @@ public class SearchResultPage extends BasicPage {
 		return getSearchResults().size();
 	}
 
-	public void searchResultsNames() {
+	public ArrayList<String> searchResultsNames() {
+		ArrayList<String> list = new ArrayList<String>();
 		for (int i = 0; i < getSearchResults().size(); i++) {
-			getSearchResults().get(i).getText();
+			String n = getSearchResults().get(i).getText();
+			list.add(n);
 		}
+		return list;
+	}
 
+	public boolean searchResultCompare(String mealsSearched) {
+		int counter = 0;
+		for (int i = 0; i < searchResultsNumber(); i++) {
+			if (searchResultsNames().get(i).equals(mealsSearched)) {
+				counter = counter + 1;
+			}
+		}
+		if (counter == searchResultsNumber()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
